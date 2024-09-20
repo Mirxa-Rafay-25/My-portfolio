@@ -1,0 +1,270 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  /* : For Shinny Button ------- */
+  --radial-gradient-background: 255, 255, 255; /* Light color for radial gradient */
+  --solid-color-background: 249, 250, 251; /* Button Solid bg Color */
+  --overlay-color: 99, 102, 241; /* Button Overlay Color */
+}
+
+body {
+  background: #eee;
+}
+
+/* Hide scrollbar of Navbar */
+.navScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.masking {
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+@layer utilities {
+  .standardWidth {
+    max-width: 800px;
+    margin: auto;
+  }
+}
+
+/* Swiper JS SLider utliz Classess */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* .swiper-slide::before {
+  content: "✦";
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 0%;
+  left: -50%;
+  color: #94a3b8;
+  font-size: 18px;
+} */
+
+/* Input Desig */
+
+.custom-field {
+  position: relative;
+  font-size: 14px;
+  margin-bottom: 5px;
+  border-radius: 50px;
+  display: inline-block;
+  --field-padding: 14px;
+}
+
+.custom-field input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: var(--field-padding);
+  border-radius: 50px;
+  min-width: 250px;
+  outline: none;
+  font-size: 12px;
+}
+
+.custom-field .placeholder {
+  position: absolute;
+  left: var(--field-padding);
+  width: calc(100% - (var(--field-padding) * 2));
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  top: 22px;
+  line-height: 100%;
+  transform: translateY(-50%);
+  color: #aaa;
+  transition: top 0.3s ease, color 0.4s ease, font-size 0.3s ease;
+}
+
+/* ONE */
+.custom-field.one input {
+  background: #f8fafc;
+  transition: border-color 0.3s ease;
+}
+
+.custom-field.one input + .placeholder {
+  left: 8px;
+  padding: 0 5px;
+}
+
+.custom-field.one input.dirty,
+.custom-field.one input:not(:placeholder-shown),
+.custom-field.one input:focus {
+  background: #f3f4f6;
+  /* transition-delay: 0.1s; */
+}
+
+.custom-field.one input.dirty + .placeholder,
+.custom-field.one input:not(:placeholder-shown) + .placeholder,
+.custom-field.one input:focus + .placeholder {
+  top: 0;
+  font-size: 10px;
+  color: #777;
+  background: #fff;
+  width: auto;
+}
+
+/* Onload Animation ----- */
+.onLoadAnims2 {
+  animation: slide-in 1s forwards;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.onLoadAnim {
+  animation: slide-down 1s forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------------------------
+  Cards Animation 
+--------------------------------- */
+.container {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.8;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+/* SHINY BUTTON HERE ------------------ */
+.radial-gradient {
+  background: radial-gradient(
+      circle at 50% 0%,
+      rgba(var(--radial-gradient-background), 0.05) 0%,
+      transparent 60%
+    )
+    rgba(var(--solid-color-background), 1);
+}
+
+.linear-mask {
+  mask-image: linear-gradient(
+    -75deg,
+    black calc(var(--x) + 20%),
+    transparent calc(var(--x) + 30%),
+    black calc(var(--x) + 100%)
+  );
+}
+
+.linear-overlay {
+  background-image: linear-gradient(
+    -75deg,
+    rgba(var(--overlay-color), 0.1) calc(var(--x) + 20%),
+    rgba(var(--overlay-color), 0.5) calc(var(--x) + 25%),
+    rgba(var(--overlay-color), 0.1) calc(var(--x) + 100%)
+  );
+  mask: linear-gradient(white, white) content-box, linear-gradient(white, white);
+  -webkit-mask: linear-gradient(white, white) content-box,
+    linear-gradient(white, white);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+/* loader design ------ */
+.loader {
+  width: 60px;
+  display: flex;
+  align-items: flex-start;
+  aspect-ratio: 1;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  flex: 1;
+  aspect-ratio: 1;
+  --g: conic-gradient(from -90deg at 10px 10px, #fff 90deg, #0000 0);
+  background: var(--g), var(--g), var(--g);
+  filter: drop-shadow(30px 30px 0 #fff);
+  animation: l20 1s infinite;
+}
+.loader:after {
+  transform: scaleX(-1);
+}
+@keyframes l20 {
+  0% {
+    background-position: 0 0, 10px 10px, 20px 20px;
+  }
+  33% {
+    background-position: 10px 10px;
+  }
+  66% {
+    background-position: 0 20px, 10px 10px, 20px 0;
+  }
+  100% {
+    background-position: 0 0, 10px 10px, 20px 20px;
+  }
+}
+
+.plane {
+  animation: plane 1s 1 both;
+}
+
+.planeBtn:hover .hoverPlane {
+  animation: plane 1s 1 both;
+  transition: all 1s;
+}
+
+@keyframes plane {
+  0% {
+    transform: rotate(0deg) translateX(0) scale(1);
+  }
+  50% {
+    transform: rotate(35deg) translateX(20px) scale(2);
+  }
+  100% {
+    transform: rotate(0deg) translateX(100px) scale(2);
+  }
+}
